@@ -9,9 +9,5 @@ trap cleanup EXIT
 
 mkfifo --mode=0666 $device
 
-while true
-do
-   read data < $device
-   echo "$data" > $device
-done
-
+exec 3<>$device
+RUST_LOG=debug ./target/release/attestation_benchmarking 0<&3 1>&3

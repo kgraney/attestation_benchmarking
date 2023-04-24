@@ -59,9 +59,9 @@ pub fn criterion_benchmark(c: &mut Criterion) {
     let fd = aws_nsm::driver::nsm_init();
     assert!(fd != -1, "Error opening NSM device!");
 
-    c.bench_function("attest", |b| {
+    c.bench_function("nsm_attest_ioctl", |b| {
         b.iter(|| {
-            let cbor_request:&[u8] = b"123 456";
+            let cbor_request: &[u8] = b"123 456";
 
             let mut cbor_response: [u8; NSM_RESPONSE_MAX_SIZE] = [0; NSM_RESPONSE_MAX_SIZE];
             let mut message = NsmMessage {
