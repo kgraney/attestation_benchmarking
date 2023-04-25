@@ -34,3 +34,4 @@ su ec2-user -c 'nitro-cli run-enclave --cpu-count 2 --enclave-cid 16 --memory 80
 su ec2-user -c 'aws s3 cp s3://kmg-ps-public/upload_benchmark.sh $HOME/upload_benchmark.sh'
 su ec2-user -c 'chmod +x $HOME/upload_benchmark.sh'
 su ec2-user -c '$HOME/upload_benchmark.sh'
+shutdown

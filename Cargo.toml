@@ -6,7 +6,6 @@ edition = "2021"
 [dependencies]
 aws-nitro-enclaves-nsm-api = "0.2.1"
 criterion = {version = "0.4.0", features = ["html_reports"]}
-env_logger = "0.10.0"
 libc = "0.2.142"
 log = "0.4.17"
 nix = "0.26.2"
@@ -15,9 +14,9 @@ serde = "1.0.160"
 serde_bytes = "0.11.9"
 serde_cbor = "0.11.2"
 
-#[[bench]]
-#name = "nsm"
-#harness = false
+[[bench]]
+name = "nsm_ioctl"
+harness = false
 
 [[bench]]
 name = "nsm_api"
