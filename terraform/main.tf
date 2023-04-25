@@ -199,10 +199,71 @@ resource "aws_launch_template" "enclave_server" {
   }
 }
 
-resource "aws_instance" "enclave_server2" {
-  ami = "ami-0c02fb55956c7d316"
-  count = 10
-  instance_type = "c6in.4xlarge"
+
+locals {
+  benchmarker_types = [
+    #{ type = "c6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
+    #{ type = "c5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "d3.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "d3en.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "g4ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "g4dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "g5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "i4i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5b.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "x2iedn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "x2iezn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+  ]
+
+  benchmarkers = distinct(flatten([
+    for replica in range(0, 3): [
+      for bm_type in local.benchmarker_types : {
+        replica = replica
+        type = bm_type.type
+        ami = bm_type.ami
+      }
+    ]
+  ]))
+}
+
+resource "aws_instance" "benchmarkers" {
+  for_each = {
+    for bm in local.benchmarkers: "${bm.type}.${bm.replica}" => bm
+  }
+  ami = each.value.ami
+  instance_type = each.value.type
   user_data = data.template_file.enclave_server.rendered
   enclave_options {
     enabled = true
@@ -219,24 +280,3 @@ resource "aws_instance" "enclave_server2" {
     Name = "NsmBenchmark"
   }
 }
-
-#resource "aws_instance" "enclave_server3" {
-#  ami = "ami-0c02fb55956c7d316"
-#  count = 10
-#  instance_type = "c6a.4xlarge"
-#  user_data = data.template_file.enclave_server.rendered
-#  enclave_options {
-#    enabled = true
-#  }
-#  root_block_device {
-#    volume_size = 32
-#    volume_type = "gp3"
-#  }
-#  associate_public_ip_address = true
-#  subnet_id = aws_subnet.enclave_subnet.id
-#  key_name = aws_key_pair.kmg.id
-#  iam_instance_profile = aws_iam_instance_profile.enclave_server_profile.name
-#  tags = {
-#    Name = "NsmBenchmark"
-#  }
-#}
