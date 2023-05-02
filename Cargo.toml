@@ -5,7 +5,6 @@ edition = "2021"
 
 [dependencies]
 aws-nitro-enclaves-nsm-api = "0.2.1"
-criterion = {version = "0.4.0", features = ["html_reports"]}
 libc = "0.2.142"
 log = "0.4.17"
 nix = "0.26.2"
@@ -13,6 +12,11 @@ rand = "0.8.4"
 serde = "1.0.160"
 serde_bytes = "0.11.9"
 serde_cbor = "0.11.2"
+
+[dependencies.criterion]
+git = "https://github.com/bheisler/criterion.rs.git"
+branch = "master"
+features = ["html_reports", "csv_output"]
 
 [[bench]]
 name = "nsm_ioctl"

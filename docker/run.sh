@@ -18,5 +18,6 @@ cp /root/.ssh/id_rsa /app  # copy private key to HTTP root for fetching
 
 # Run the benchmarks and keep the container alive.
 cd /app
-cargo bench
+#cargo criterion --message-format=json
+/app/tools/run_benchmarks.sh
 python3 -m http.server 8000
