@@ -15,7 +15,7 @@ su ec2-user -c 'chmod +x $HOME/socat'
 usermod -aG ne ec2-user
 usermod -aG docker ec2-user
 echo "---
-memory_mib: 8096
+memory_mib: 16192
 cpu_count: 4" > /etc/nitro_enclaves/allocator.yaml
 
 # Start Docker and Enclave services.
@@ -25,7 +25,7 @@ systemctl start docker && sudo systemctl enable docker
 # Build the enclave from ECR and launch it.
 su ec2-user -c 'eval $(aws ecr get-login --region us-east-1 --no-include-email) && docker pull 743396514183.dkr.ecr.us-east-1.amazonaws.com/nsm_benchmark:latest'
 su ec2-user -c 'nitro-cli build-enclave --docker-uri 743396514183.dkr.ecr.us-east-1.amazonaws.com/nsm_benchmark:latest --output-file $HOME/nsm_benchmark.eif'
-su ec2-user -c 'nitro-cli run-enclave --cpu-count 2 --enclave-cid 16 --memory 8096 --eif-path $HOME/nsm_benchmark.eif'
+su ec2-user -c 'nitro-cli run-enclave --cpu-count 2 --enclave-cid 16 --memory 16192 --eif-path $HOME/nsm_benchmark.eif'
 
 # Forward SSH to the vsock.
 /home/ec2-user/socat TCP4-LISTEN:2222,reuseaddr,fork VSOCK-CONNECT:16:5006 &
