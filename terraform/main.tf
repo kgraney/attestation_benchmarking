@@ -202,9 +202,6 @@ resource "aws_launch_template" "enclave_server" {
 
 locals {
   benchmarker_types = [
-    #{ type = "c6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
-
     #{ type = "c5.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "c5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "c5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
@@ -216,7 +213,7 @@ locals {
     #{ type = "c6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "d3.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "d3en.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "g4ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
     #{ type = "g4dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "g5.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "i4i.4xlarge", ami = "ami-0c02fb55956c7d316" },
@@ -232,6 +229,7 @@ locals {
     #{ type = "m6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "m6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "r5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
     #{ type = "r5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "r5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "r5b.4xlarge", ami = "ami-0c02fb55956c7d316" },
@@ -245,6 +243,8 @@ locals {
     #{ type = "r6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "x2iedn.4xlarge", ami = "ami-0c02fb55956c7d316" },
     #{ type = "x2iezn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
+    #{ type = "m5zn.2xlarge", ami = "ami-0c02fb55956c7d316" },
   ]
 
   benchmarkers = distinct(flatten([
