@@ -104,3 +104,7 @@ crw-rw-rw- 1 root root 10, 147 Apr 20 14:13 /dev/nsm
 ```
 
 Does not appear to use `read()` or `write()` -- only `ioctl()`.
+
+## Disclaimer
+
+This is not an officially supported Google product.
