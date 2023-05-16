@@ -12,6 +12,63 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+variable "ssh_key" {
+  type = string
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfFO4peyUKMzoMW67opywcU/VnRfJpocMdneucDdNKWhhbxC9l8b2ihFUdEXxvzKE3iSeGn9PwUINCDYHbGX/KZIMX+KSg1wQFdtxk42kfzZhz/pxaSCdvhMXJiGnCD7VS1YMmF7ay2WaapqOBsjadx10BNXUDse1M9p9szDXC+3UHXKBnjNRjLB5ygWZECoYJ1+/GHaJf2NKxWokjI6G0wX5HOwbAkpH6iNxfZ3qXvzAxwJ+IzpGzqaU7+vqY5PARpHnfI+UEC/cyl9pnVjHs6skOJl7EF1ADXUrx2DPr3m1KOmqbQy4MENwuWGhxYL9kx42iejcS9iK0rk9tHBNzWNlPoqOPxrxibkG48MP83PJQmaVCyag5n7E1ZCJjNpMtdjTm7NXPcCaDxN98RXQzwDWpNAFECu0h0gGwtf018feMvUgidq4wOYGJp937Wyth7W0zks6gNmdba8KoD3+kxcjCdGfAqFTip+RUdAnlZLM5O5ErnxgXW4muA2016upWuP+SGy39e4oBa3TM+BqCW38OZNg+2AglweNNTZutWUA5iYBSsKQTER846yflZDo9J+weOdPylwAnTsiUcf3EzlxFxgZPtSZikhWQyFds9EVH8qx2zoP5reXVzilyGka9vkA0sUlWkRBqbH/NaItHFUh6pl31PFXXQ0dZhFyznQ== kmg@kmg.nyc.corp.google.com"
+}
+
+
+variable "instance_types" {
+  type = list(string)
+  default = [
+    #{ type = "c5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "c6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "d3.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "d3en.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
+    #{ type = "g4dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "g5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "i4i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "m6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
+    #{ type = "r5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5b.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "r6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "x2iedn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+    #{ type = "x2iezn.4xlarge", ami = "ami-0c02fb55956c7d316" },
+
+    #{ type = "m5zn.2xlarge", ami = "ami-0c02fb55956c7d316" },
+  ]
+}
+
+
+
 terraform {
   required_providers {
     aws = {
@@ -27,9 +84,9 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_key_pair" "kmg" {
-  key_name   = "kmg_keypair"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfFO4peyUKMzoMW67opywcU/VnRfJpocMdneucDdNKWhhbxC9l8b2ihFUdEXxvzKE3iSeGn9PwUINCDYHbGX/KZIMX+KSg1wQFdtxk42kfzZhz/pxaSCdvhMXJiGnCD7VS1YMmF7ay2WaapqOBsjadx10BNXUDse1M9p9szDXC+3UHXKBnjNRjLB5ygWZECoYJ1+/GHaJf2NKxWokjI6G0wX5HOwbAkpH6iNxfZ3qXvzAxwJ+IzpGzqaU7+vqY5PARpHnfI+UEC/cyl9pnVjHs6skOJl7EF1ADXUrx2DPr3m1KOmqbQy4MENwuWGhxYL9kx42iejcS9iK0rk9tHBNzWNlPoqOPxrxibkG48MP83PJQmaVCyag5n7E1ZCJjNpMtdjTm7NXPcCaDxN98RXQzwDWpNAFECu0h0gGwtf018feMvUgidq4wOYGJp937Wyth7W0zks6gNmdba8KoD3+kxcjCdGfAqFTip+RUdAnlZLM5O5ErnxgXW4muA2016upWuP+SGy39e4oBa3TM+BqCW38OZNg+2AglweNNTZutWUA5iYBSsKQTER846yflZDo9J+weOdPylwAnTsiUcf3EzlxFxgZPtSZikhWQyFds9EVH8qx2zoP5reXVzilyGka9vkA0sUlWkRBqbH/NaItHFUh6pl31PFXXQ0dZhFyznQ== kmg@kmg.nyc.corp.google.com"
+resource "aws_key_pair" "ssh" {
+  key_name   = "attestation_ssh_keypair"
+  public_key = var.ssh_key
 }
 
 resource "aws_ecr_repository" "enclave_server_repository" {
@@ -188,7 +245,7 @@ resource "aws_launch_template" "enclave_server" {
   #instance_type = "c5.xlarge"
   user_data = base64encode(data.template_file.enclave_server.rendered)
   #subnet_id = aws_subnet.enclave_subnet.id
-  key_name = aws_key_pair.kmg.id
+  key_name = aws_key_pair.ssh.id
   monitoring {
     enabled = true
   }
@@ -215,52 +272,7 @@ resource "aws_launch_template" "enclave_server" {
 
 
 locals {
-  benchmarker_types = [
-    #{ type = "c5.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "c6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "d3.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "d3en.4xlarge", ami = "ami-0c02fb55956c7d316" },
-
-    #{ type = "g4dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "g5.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "i4i.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m5.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m5dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "m6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r5.4xlarge", ami = "ami-0c02fb55956c7d316" },
-
-    #{ type = "r5a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r5ad.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r5b.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r5d.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r5dn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r5n.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r6a.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r6i.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r6id.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r6idn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "r6in.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "x2iedn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-    #{ type = "x2iezn.4xlarge", ami = "ami-0c02fb55956c7d316" },
-
-    #{ type = "m5zn.2xlarge", ami = "ami-0c02fb55956c7d316" },
-  ]
-
+  benchmarker_types = var.instance_types
   benchmarkers = distinct(flatten([
     for replica in range(0, 3): [
       for bm_type in local.benchmarker_types : {
@@ -288,7 +300,7 @@ resource "aws_instance" "benchmarkers" {
   }
   associate_public_ip_address = true
   subnet_id = aws_subnet.enclave_subnet.id
-  key_name = aws_key_pair.kmg.id
+  key_name = aws_key_pair.ssh.id
   iam_instance_profile = aws_iam_instance_profile.enclave_server_profile.name
   tags = {
     Name = "NsmBenchmark"
